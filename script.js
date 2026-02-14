@@ -26,7 +26,6 @@ const COUNTER_TOTAL_MS = COUNTER_PHASES_MS[0] + COUNTER_PHASES_MS[1] + COUNTER_P
   const vaultSection = document.getElementById('vaultSection');
   const revealContainer = document.getElementById('revealContainer');
   const confettiCanvas = document.getElementById('confettiCanvas');
-  const musicToggle = document.getElementById('musicToggle');
   const bgMusic = document.getElementById('bgMusic');
 
   /** Counter value at elapsed ms */
@@ -148,7 +147,6 @@ const COUNTER_TOTAL_MS = COUNTER_PHASES_MS[0] + COUNTER_PHASES_MS[1] + COUNTER_P
     runConfetti();
     if (vaultSection) vaultSection.hidden = true;
     if (revealContainer) revealContainer.hidden = false;
-    musicToggle.hidden = false;
     try {
       bgMusic.play().catch(function () {});
     } catch (e) {}
@@ -199,17 +197,6 @@ const COUNTER_TOTAL_MS = COUNTER_PHASES_MS[0] + COUNTER_PHASES_MS[1] + COUNTER_P
     }
   });
 
-  musicToggle.addEventListener('click', function () {
-    if (bgMusic.paused) {
-      bgMusic.play().then(function () {
-        musicToggle.classList.add('playing');
-      }).catch(function () {});
-    } else {
-      bgMusic.pause();
-      musicToggle.classList.remove('playing');
-    }
-  });
-
   window.addEventListener('resize', function () {
     if (confettiCanvas && confettiCanvas.style.display !== 'none') {
       confettiCanvas.width = window.innerWidth;
@@ -224,7 +211,7 @@ const COUNTER_TOTAL_MS = COUNTER_PHASES_MS[0] + COUNTER_PHASES_MS[1] + COUNTER_P
     if (!wrapper || !closed || !letterReveal) return;
     var hoverCount = 0;
     var opened = false;
-    var moveRange = 150;
+    var moveRange = 240;
 
     function randomOffset() {
       return (Math.random() * 2 - 1) * moveRange;

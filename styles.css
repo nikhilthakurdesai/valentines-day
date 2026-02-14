@@ -38,32 +38,6 @@ body {
   border: 0;
 }
 
-/* --- Music toggle (sticky) --- */
-.music-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: none;
-  background: var(--gradient-card);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-soft);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.music-toggle:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(236, 64, 122, 0.25); }
-.music-toggle:focus { outline: 2px solid var(--color-pink); outline-offset: 2px; }
-.music-icon { font-size: 1.1rem; color: var(--color-pink-deep); }
-.music-icon.pause { display: none; }
-.music-toggle.playing .music-icon.play { display: none; }
-.music-toggle.playing .music-icon.pause { display: inline; }
-
 /* --- Hero --- */
 .hero {
   min-height: 100vh;
@@ -558,5 +532,4 @@ body {
   .counter-card { padding: 1.5rem 2rem; }
   .vault-card { padding: 1.5rem; }
   .letter-paper { padding: 1.75rem 1.25rem; }
-  .music-toggle { top: 0.75rem; right: 0.75rem; width: 2.75rem; height: 2.75rem; }
 }
