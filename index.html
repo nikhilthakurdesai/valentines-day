@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our First Year — Valentine's Day 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sticky music toggle (visible after unlock) -->
+  <button type="button" id="musicToggle" class="music-toggle" aria-label="Play or pause background music" title="Play / Pause music" hidden>
+    <span class="music-icon play">▶</span>
+    <span class="music-icon pause">❚❚</span>
+  </button>
+
+  <audio id="bgMusic" src="music.mp3" loop></audio>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hearts" aria-hidden="true">
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+      <span class="heart">♥</span>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Our First Year</h1>
+      <p class="hero-subtitle">Together since Feb 14, 2025</p>
+      <div class="counter-card">
+        <div class="counter-number-wrap">
+          <span id="daysCounter" class="counter-number">0</span>
+          <div class="heart-burst" id="heartBurst" aria-hidden="true">
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+            <span class="burst-heart">♥</span>
+          </div>
+        </div>
+        <span class="counter-label">days together</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locked quiz vault (timeline of question cards) -->
+  <section class="vault-section" id="vaultSection">
+    <div class="vault-outer">
+      <div class="vault-header">
+        <span class="lock-icon" aria-hidden="true">🔒</span>
+        <h2>Unlock the memories</h2>
+      </div>
+      <div class="quiz-timeline">
+        <article class="quiz-timeline-item open" data-index="0">
+          <div class="quiz-timeline-card">
+            <p class="quiz-question">When did we first meet?</p>
+            <form class="quiz-form" data-question="0" novalidate>
+              <input type="text" class="quiz-input" placeholder="Your answer" autocomplete="off">
+              <button type="submit" class="quiz-submit">Check</button>
+            </form>
+            <div class="quiz-card-done" hidden aria-hidden="true">✓</div>
+            <p class="quiz-card-note" hidden aria-hidden="true"></p>
+          </div>
+        </article>
+        <div class="quiz-connector" aria-hidden="true">
+          <span class="quiz-connector-line"></span>
+          <span class="quiz-connector-dot"></span>
+        </div>
+        <article class="quiz-timeline-item locked" data-index="1">
+          <div class="quiz-timeline-card">
+            <p class="quiz-question">What is my favourite nickname of yours?</p>
+            <form class="quiz-form" data-question="1" novalidate>
+              <input type="text" class="quiz-input" placeholder="Your answer" autocomplete="off">
+              <button type="submit" class="quiz-submit">Check</button>
+            </form>
+            <div class="quiz-card-done" hidden aria-hidden="true">✓</div>
+            <p class="quiz-card-note" hidden aria-hidden="true"></p>
+          </div>
+        </article>
+        <div class="quiz-connector" aria-hidden="true">
+          <span class="quiz-connector-line"></span>
+          <span class="quiz-connector-dot"></span>
+        </div>
+        <article class="quiz-timeline-item locked" data-index="2">
+          <div class="quiz-timeline-card">
+            <p class="quiz-question">Where was our first date?</p>
+            <form class="quiz-form" data-question="2" novalidate>
+              <input type="text" class="quiz-input" placeholder="Your answer" autocomplete="off">
+              <button type="submit" class="quiz-submit">Check</button>
+            </form>
+            <div class="quiz-card-done" hidden aria-hidden="true">✓</div>
+            <p class="quiz-card-note" hidden aria-hidden="true"></p>
+          </div>
+        </article>
+        <div class="quiz-connector" aria-hidden="true">
+          <span class="quiz-connector-line"></span>
+          <span class="quiz-connector-dot"></span>
+        </div>
+        <article class="quiz-timeline-item locked" data-index="3">
+          <div class="quiz-timeline-card">
+            <p class="quiz-question">Who do you love the most? 😉</p>
+            <form class="quiz-form" data-question="3" novalidate>
+              <input type="text" class="quiz-input" placeholder="Your answer" autocomplete="off">
+              <button type="submit" class="quiz-submit">Check</button>
+            </form>
+            <div class="quiz-card-done" hidden aria-hidden="true">✓</div>
+            <p class="quiz-card-note" hidden aria-hidden="true"></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reveal sections (hidden until unlock) -->
+  <div id="revealContainer" class="reveal-container" hidden>
+    <!-- Confetti canvas (drawn by JS) -->
+    <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+    <!-- Memory Lane -->
+    <section class="memory-lane" id="memoryLane">
+      <h2 class="section-title">Memory Lane</h2>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/the_day_we_met.jpeg" alt="Our first meeting" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">Feb 14, 2025</time>
+            <p class="timeline-caption">The day we met. One year ago today.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/first_movie.jpeg" alt="First movie" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">The Betrayal</time>
+            <p class="timeline-caption">I'm still waiting to see those first 45 mins of Chhatrapati Sambhaji 😭</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/delicious.jpeg" alt="Delicious" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">The Morning After</time>
+            <p class="timeline-caption">Foodgasm Baby 👀👀</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/Baby's Birthday.jpeg" alt="Baby's Birthday" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">Birthday Gurlll</time>
+            <p class="timeline-caption">My Baby's First Birthdayyyy with me!!!</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/first_monthversary.jpeg" alt="First monthversary" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">1 month ❤️</time>
+            <p class="timeline-caption">Our First Monthversary!! I can never forget this day</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/mysuru.jpeg" alt="Mysuru road trip" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">Our First Road Trip</time>
+            <p class="timeline-caption">Yes! We drove all the way to Mysuru just for a cafe! 😂</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/pav_bhaji_date.jpeg" alt="Pav bhaji date" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">Baby in Mumbai</time>
+            <p class="timeline-caption">Baby having "real" Pav Bhaji for the first time 😋</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-image-wrap">
+              <img src="images/last_photo.jpeg" alt="Last photo" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling?.classList.add('show');" loading="lazy">
+              <div class="timeline-image-placeholder" aria-hidden="true"><span>♥</span></div>
+            </div>
+            <time class="timeline-date">Sayonara</time>
+            <p class="timeline-caption">This was the last photo we took! Can't wait to meet you again and make more memories 🙈</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Love Letter (hidden behind envelope until 6th hover) -->
+    <section class="love-letter" id="loveLetter">
+      <h2 class="section-title visually-hidden">Love Letter</h2>
+      <div class="envelope-stage">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+          <div class="envelope-closed" id="envelopeClosed">
+            <span class="envelope-heart" aria-hidden="true">♥</span>
+          </div>
+        </div>
+        <div class="letter-reveal" id="letterReveal">
+          <div class="letter-paper">
+            <p class="letter-body">
+              My Love,<br><br>
+              One year ago, today, we met for the very first time on Valentine's Day. I can't believe the last year has gone by so quickly. That's literally 365 days of Fuljhadiiii!! From the very first moment of holding your hand to show you the moon, to making you my moon, the last year has been a roller coaster ride.<br><br>
+              I truly cherish all the love and the joyful memories you have given me. I miss our laughs, our cooking sessions, Matcha time, our cafe dates, hugs, cuddles, your smell, everything about you. There is not one day that goes by where I am not thinking about you.<br><br>
+              I know I am not perfect, but I want you to know that I am YOURS. And I can't wait to do this thing with you called Life.<br><br>
+              Happy Valentine's Day!! ❤️<br><br>
+              Your Nikki
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
