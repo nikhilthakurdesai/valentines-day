@@ -421,6 +421,7 @@ body {
   transition: transform 0.35s ease-out;
   cursor: pointer;
   z-index: 2;
+  touch-action: manipulation;
 }
 .envelope-wrapper.opened {
   pointer-events: none;
@@ -529,7 +530,27 @@ body {
 
 /* --- Responsive --- */
 @media (max-width: 480px) {
+  .hero { padding: 1.5rem 0.75rem; }
   .counter-card { padding: 1.5rem 2rem; }
-  .vault-card { padding: 1.5rem; }
+  .vault-section { padding: 1.5rem 0.75rem 2rem; max-width: 100%; }
+  .vault-outer { padding: 1.25rem; }
+  .vault-header h2 { font-size: 1.2rem; }
+  .quiz-timeline-card { padding: 1rem; }
+  .quiz-question { font-size: 1rem; }
+  .quiz-input, .quiz-submit { min-height: 44px; padding: 0.75rem 1rem; }
+  .quiz-connector.visible { min-height: 4rem; }
+  .memory-lane { padding: 2rem 0.75rem; }
+  .timeline-card { margin-left: 0.25rem; }
+  .timeline-date { padding: 0.5rem 1rem 0.15rem; font-size: 0.8rem; }
+  .timeline-caption { padding: 0 1rem 1rem; font-size: 0.9rem; }
+  .love-letter { padding: 1.5rem 0.75rem 3rem; }
+  .envelope-stage { min-height: 200px; }
+  .envelope-closed { width: 150px; height: 108px; }
+  .envelope-heart { font-size: 2.4rem; }
   .letter-paper { padding: 1.75rem 1.25rem; }
+  .letter-body { font-size: 1.15rem; }
+}
+@media (max-width: 360px) {
+  .envelope-closed { width: 130px; height: 94px; }
+  .envelope-heart { font-size: 2rem; }
 }

@@ -211,15 +211,45 @@ const COUNTER_TOTAL_MS = COUNTER_PHASES_MS[0] + COUNTER_PHASES_MS[1] + COUNTER_P
     if (!wrapper || !closed || !letterReveal) return;
     var hoverCount = 0;
     var opened = false;
-    var moveRange = 240;
+    var lastX = 0;
+    var lastY = 0;
 
-    function randomOffset() {
-      return (Math.random() * 2 - 1) * moveRange;
+    function getMinDistance() {
+      return Math.round(0.2 * (typeof window !== 'undefined' ? window.innerWidth : 320));
+    }
+
+    function clampPosition(x, y) {
+      var maxX = Math.round(0.38 * window.innerWidth);
+      var maxY = Math.round(0.22 * window.innerHeight);
+      return {
+        x: Math.max(-maxX, Math.min(maxX, x)),
+        y: Math.max(-maxY, Math.min(maxY, y))
+      };
     }
 
     function moveEnvelope() {
-      var x = randomOffset();
-      var y = randomOffset();
+      var minDist = getMinDistance();
+      var x, y;
+      if (lastX === 0 && lastY === 0) {
+        var angle = Math.random() * Math.PI * 2;
+        var dist = minDist + Math.random() * minDist * 0.5;
+        x = Math.round(Math.cos(angle) * dist);
+        y = Math.round(Math.sin(angle) * dist);
+      } else {
+        x = -lastX;
+        y = -lastY;
+        var dist = Math.sqrt(x * x + y * y);
+        if (dist < minDist && dist > 0) {
+          var scale = minDist / dist;
+          x = Math.round(x * scale);
+          y = Math.round(y * scale);
+        }
+      }
+      var clamped = clampPosition(x, y);
+      x = clamped.x;
+      y = clamped.y;
+      lastX = x;
+      lastY = y;
       wrapper.style.transform = 'translate(calc(-50% + ' + x + 'px), ' + y + 'px)';
     }
 
@@ -233,7 +263,7 @@ const COUNTER_TOTAL_MS = COUNTER_PHASES_MS[0] + COUNTER_PHASES_MS[1] + COUNTER_P
       }, 550);
     }
 
-    wrapper.addEventListener('mouseenter', function () {
+    function onEnvelopeInteract() {
       if (opened) return;
       hoverCount += 1;
       if (hoverCount <= 5) {
@@ -241,6 +271,11 @@ const COUNTER_TOTAL_MS = COUNTER_PHASES_MS[0] + COUNTER_PHASES_MS[1] + COUNTER_P
       } else {
         openEnvelope();
       }
+    }
+    wrapper.addEventListener('mouseenter', onEnvelopeInteract);
+    wrapper.addEventListener('click', function (e) {
+      e.preventDefault();
+      onEnvelopeInteract();
     });
   })();
 
